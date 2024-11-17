@@ -1,0 +1,24 @@
+# crate folder 'final_proposal_form_photo' name and also created multiple folders in it
+def download_photo():
+    import os
+    import boto3
+    bucket_name = AWS_S3_BUCKET_NAME
+    medical = []
+    insta_image = []
+    for url in medical:
+        photo_object = url.split("aws link............................")[1]
+        obj = boto3.client("s3")
+        if os.path.exists("final_proposal_form_photo") is False: #check folder exists or not
+            os.makedirs("final_proposal_form_photo/medial") #create folders
+            os.makedirs("final_proposal_form_photo/piwc") #create folders
+        photo_file = photo_object.split("/")[-1]
+        file_path = f"final_proposal_form_photo/medial/{photo_file}"
+        obj.download_file(Filename=file_path, Bucket=bucket_name, Key=photo_object)
+    for url in insta_image:
+        photo_object = url.split("aws link............................")[1]
+        obj = boto3.client("s3")
+        if os.path.exists("final_proposal_form_photo") is False: #check folder exists or not
+            os.makedirs("final_proposal_form_photo/piwc/") #create folders
+        photo_file = photo_object.split("/")[-1]
+        file_path = f"final_proposal_form_photo/piwc/{photo_file}"
+        obj.download_file(Filename=file_path, Bucket="prod-av-sbi-backend", Key=photo_object)
