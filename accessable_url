@@ -1,0 +1,16 @@
+def get_presigned_url(object_key):
+    import boto3
+    from core.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
+    aws_access_key_id = AWS_ACCESS_KEY_ID
+    aws_secret_access_key = AWS_SECRET_ACCESS_KEY
+    region_name = 'ap-south-1'
+    bucket_name = AWS_S3_BUCKET_NAME
+    object_key = object_key
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,
+                      region_name=region_name)
+    presigned_url = s3.generate_presigned_url(
+        'get_object',
+        Params={'Bucket': bucket_name, 'Key': object_key},
+        ExpiresIn=3600
+    )
+    return presigned_url
