@@ -21,4 +21,4 @@ def download_photo():
             os.makedirs("final_proposal_form_photo/piwc/") #create folders
         photo_file = photo_object.split("/")[-1]
         file_path = f"final_proposal_form_photo/piwc/{photo_file}"
-        obj.download_file(Filename=file_path, Bucket="prod-av-sbi-backend", Key=photo_object)
+        obj.download_file(Filename=file_path, Bucket="bucket_name", Key=photo_object)
